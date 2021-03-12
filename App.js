@@ -1,24 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Slider } from 'react-native-elements';
+import { StyleSheet, Text, View, Switch } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+//import * as ScreenOrientation from 'expo-screen-orientation';
+
+
+import {MySlider} from '../AndroidDev/elements/Slider.js';
+import {MyTumbler} from '../AndroidDev/elements/Tumbler.js';
+import {MyBox} from '../AndroidDev/elements/NewBox.js';
+//import {MyBar} from '../AndroidDev/elements/Progress.js'
+
 
 function lab1() {
   return (
-    <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center', backgroundColor: '#505050' }}>
-    <Slider
-      value={value}
-      onValueChange={setValue}
-      maximumValue={50}
-      minimumValue={20}
-      step={1}
-      trackStyle={{ height: 10, backgroundColor: 'transparent' }}
-      thumbStyle={{ height: 20, width: 20, backgroundColor: 'transparent' }}
-      thumbProps={{
-    }}
-  />
-  <Text>Value: {this.state.value}</Text>
+    <View style = {styles.lab1}>
+      <View style={ styles.slideView }>
+        <MySlider />
+      </View>
+      <View style = {styles.lab1}>
+        <MyTumbler />
+      </View>
+      <View style = {styles.lab1}>
+        <MyBox />
+      </View>
+      <View>
+      </View>
     </View>
   );
 }
@@ -57,6 +63,17 @@ const styles = StyleSheet.create({
   navtext:{
     fontSize: 20,
   },
+  slideView: {
+    flex:1,
+    flexDirection: 'row',
+    alignItems: "flex-start",
+    justifyContent:"center",
+  },
+  lab1:{
+    marginVertical:30,
+    marginHorizontal:20,
+
+  }
 });
 
 const MyTheme = {
