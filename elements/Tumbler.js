@@ -1,17 +1,10 @@
 import React, {useState} from 'react';
 import { StyleSheet,ScrollView,Text,View, Switch } from 'react-native';
-//import * as ScreenOrientation from 'expo-screen-orientation';
-
-/* async function changeScreenOrientation() {
-    //if (ScreenOrientation.getOrientationLockAsync() == LANDSCAPE_RIGHT):
-    await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.ALL);
-  } */
 
 export const MyTumbler = props =>{
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => {
         setIsEnabled(previousState => !previousState);
-        //changeScreenOrientation()
     }
     return(
         <View style={ styles.View }>
@@ -58,7 +51,7 @@ export const MyTumbler = props =>{
                 </ScrollView>
             </View>
             <Switch 
-                style={{marginVertical:10}}
+                style={{marginVertical:10,}}
                 onValueChange={toggleSwitch}
                 value={isEnabled}
                 trackColor={{false:"#FFF", true: "#242424"}}
