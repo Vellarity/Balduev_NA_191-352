@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'; //Внешняя реализация. Выполнен плохо, можно переписать в десяток раз короче.
 import { StyleSheet,ScrollView,Text,View, Switch } from 'react-native';
 
 export const MyTumbler = props =>{

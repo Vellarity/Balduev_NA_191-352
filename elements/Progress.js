@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react'; //На данный момент просто неактивный Слайдер, активность можно добавить при необходимости.
 import { StyleSheet,Text,View,} from 'react-native';
 import { Slider } from 'react-native-elements';
 

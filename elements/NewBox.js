@@ -1,4 +1,4 @@
-import Checkbox from 'expo-checkbox';
+import Checkbox from 'expo-checkbox'; //Модуль Чекбокса
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 

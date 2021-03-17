@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; //Стиль для Слайдера
 import { StyleSheet, Image } from 'react-native';
 
 class CustomMarker extends React.Component {

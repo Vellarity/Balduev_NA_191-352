@@ -1,25 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react'; //Основной файл со всеми страницами свайпов
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-import {MySlider} from '../AndroidDev/elements/Slider.js';
-import {MyTumbler} from '../AndroidDev/elements/Tumbler.js';
-import {MyBox} from '../AndroidDev/elements/NewBox.js';
-import {MyBar} from '../AndroidDev/elements/Progress.js'
-import {LongPress} from '../AndroidDev/elements/LongPress.js'
-import CustomMarker from "../AndroidDev/elements/MyCont"
+//Собственные модули. Потом объединить в один файл для простоты.
+import {MySlider} from './elements/Slider.js';
+import {MyTumbler} from './elements/Tumbler.js';
+import {MyBox} from './elements/NewBox.js';
+import {MyBar} from './elements/Progress.js';
+import {LongPress} from './elements/LongPress.js';
+import CustomMarker from "./elements/MyCont";
+import { MyVideo } from './camerafilms/Video.js';
 
-
+//Первая страница свайпа с элементами
 function lab1() {
   const [multiSliderValue, setMultiSliderValue] = React.useState([30, 70]);
 
   return (
     <View style={{ flex: 1, justifyContent: 'space-between'}}>
-      <View style={{backgroundColor:"#000"}}>
-        <Text style={{color:"#FFF", fontSize:30, textAlign:"center" ,marginTop:5}}>Balduev N A</Text>
-      </View>
       <View style={styles.all}>
         <View>
           <MySlider />
@@ -56,15 +55,17 @@ function lab1() {
   );
 }
 
+//Вторая страница с видео и камерой
 function lab2() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>lab2</Text>
+    <View style={styles.all,{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
+      <MyVideo />
     </View>
   );
 }
 
 function lab3() {
+  
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>lab3</Text>
@@ -72,14 +73,17 @@ function lab3() {
   );
 }
 
-//const Tab = createBottomTabNavigator();
 const Tab = createMaterialTopTabNavigator();
 
+//Само приложение со свайп-навигатором 
 export default function App() {
   
 
   return (
     <NavigationContainer theme={MyTheme}>
+      <View style={{backgroundColor:"#000"}}>
+        <Text style={{color:"#FFF", fontSize:30, textAlign:"center" ,marginTop:5}}>Balduev N A</Text>
+      </View>
       <Tab.Navigator tabBarOptions={{labelStyle: {fontSize: 25, textAlign:"center"}}} tabBarPosition={'bottom'} >
         <Tab.Screen name="lab1" component={lab1} />
         <Tab.Screen name="lab2" component={lab2} />
@@ -89,6 +93,7 @@ export default function App() {
   );
 }
 
+//Стили
 const styles = StyleSheet.create({
   all:{
     marginHorizontal:20,

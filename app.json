@@ -2,7 +2,7 @@
   "expo": {
     "name": "AndroidDev",
     "slug": "AndroidDev",
-    "version": "1.0.1",
+    "version": "1.0.5",
     "orientation": "default",
     "icon": "./assets/icon.png",
     "splash": {
