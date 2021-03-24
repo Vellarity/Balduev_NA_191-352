@@ -4,10 +4,13 @@ import { Slider } from 'react-native-elements';
 
 
 export const MyBar = props => {
+    const [value, SetValue] = useState(0)
+
     return(
             <Slider 
                 style={ styles.MySlider }
                 value={50}
+                //onSlidingComplete={StartBar}
                 disabled={true}
                 minimumValue={0}
                 maximumValue={100}

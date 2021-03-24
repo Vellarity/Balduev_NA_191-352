@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 //Собственные модули. Потом объединить в один файл для простоты.
 import {MySlider} from './elements/Slider.js';
@@ -12,6 +13,7 @@ import {MyBar} from './elements/Progress.js';
 import {LongPress} from './elements/LongPress.js';
 import CustomMarker from "./elements/MyCont";
 import { MyVideo } from './camerafilms/Video.js';
+import MyCamera from './camerafilms/Camera.js'
 
 //Первая страница свайпа с элементами
 function lab1() {
@@ -55,12 +57,15 @@ function lab1() {
   );
 }
 
+const miniTab = createBottomTabNavigator();
+
 //Вторая страница с видео и камерой
 function lab2() {
   return (
-    <View style={styles.all,{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
-      <MyVideo />
-    </View>
+    <miniTab.Navigator tabBarOptions={{labelStyle: {fontSize: 25, textAlign:"center"}, }} lazy lazyPreloadDistance={0} swipeEnabled={false} tabBarPosition='top'>
+      <miniTab.Screen name="Video" component={MyVideo} />
+      <miniTab.Screen name="Camera" component={MyCamera} />
+    </miniTab.Navigator>
   );
 }
 
@@ -84,7 +89,7 @@ export default function App() {
       <View style={{backgroundColor:"#000"}}>
         <Text style={{color:"#FFF", fontSize:30, textAlign:"center" ,marginTop:5}}>Balduev N A</Text>
       </View>
-      <Tab.Navigator tabBarOptions={{labelStyle: {fontSize: 25, textAlign:"center"}}} tabBarPosition={'bottom'} >
+      <Tab.Navigator tabBarOptions={{labelStyle: {fontSize: 25, textAlign:"center"}}} tabBarPosition={'bottom'}>
         <Tab.Screen name="lab1" component={lab1} />
         <Tab.Screen name="lab2" component={lab2} />
         <Tab.Screen name="lab3" component={lab3} />
