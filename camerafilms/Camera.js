@@ -7,7 +7,6 @@ import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 
 
-
 export default class MyCamera extends React.Component {
   state = {
     hasPermission: null,
@@ -19,8 +18,6 @@ export default class MyCamera extends React.Component {
   }
 
   getPermissionAsync = async () => {
-    // Camera roll Permission 
-    // Camera Permission
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasPermission: status === 'granted' });
   }
@@ -37,14 +34,27 @@ export default class MyCamera extends React.Component {
 
   takePicture = async () => {
     if (this.camera) {
-      let photo = await this.camera.takePictureAsync();
-      const path = await MediaLibrary.saveToLibraryAsync(photo)
+      const photo = await this.camera.takePictureAsync();
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+      if (status === "granted") {
+        const cachedAsset = await MediaLibrary.createAssetAsync(photo.uri);
+        
+        const albumName = "react-native"
+        const album = await MediaLibrary.getAlbumAsync(albumName)
+        
+        if(album){
+          await MediaLibrary.addAssetsToAlbumAsync([cachedAsset], album, false);
+        }else{
+          const asset = await MediaLibrary.createAssetAsync(photo.uri);
+          await MediaLibrary.createAlbumAsync(albumName, asset);
+        }
+      }
     }
   }
 
   pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
