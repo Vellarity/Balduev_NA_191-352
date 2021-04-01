@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {Video} from "expo-av";
-import { Dimensions, View, Image } from "react-native";
+import { Dimensions, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Slider, Icon } from 'react-native-elements';
 
@@ -99,7 +99,7 @@ export const MyVideo = props =>{
                 onSlidingComplete={handleDoneSliding}
                 thumbStyle={{ height: 0, width: 0, backgroundColor: 'transparent'  }} 
                 trackStyle={{ height: 4, backgroundColor: '#FB2D2D' }}
-                minimumTrackTintColor={"#242424"}
+                minimumTrackTintColor={"#7289DA"}
             />        
         </View>
     )

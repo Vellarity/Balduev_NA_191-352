@@ -1,5 +1,84 @@
-import React, {useState} from 'react'; //Внешняя реализация. Выполнен плохо, можно переписать в десяток раз короче.
-import { StyleSheet,ScrollView,Text,View, Switch } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet,Text, Pressable, Image, View, ScrollView, Switch } from 'react-native';
+import Checkbox from 'expo-checkbox'; //Модуль Чекбокса
+import { Slider, Icon } from 'react-native-elements';
+
+
+export const LongPress = props =>{
+    const [oldText,SetText] = useState("Зажми")
+                                                //Pressable выcтупает в роли DelayButton
+    return(
+        <Pressable onLongPress={() => SetText("Меня долго нажимали")} delayLongPress={5000} style={styles.Pressable} android_ripple={{color:"#FFF"}}> 
+            <Text style={{color:"#FFF", fontSize:16,}}>{oldText}</Text>
+        </Pressable>
+    )
+}
+
+class CustomMarker extends React.Component {
+    render() {
+      return (
+         /* <Image
+          style={styles.image}
+          source={require('../assets/treu.png')}
+          resizeMode="contain"
+        /> */
+        <Icon
+            marginTop={5}
+            name="ellipse"
+            type='ionicon'
+            color="#7289DA"
+        />
+      );
+    }
+  }
+  
+  export default CustomMarker;
+
+  export const MyBox = props => {
+    const [isChecked, setChecked] = useState(false);
+
+    return(
+        <View style={{flexDirection:'row', justifyContent:"space-evenly", alignItems:"center"}}>
+            <Text style={{ fontSize:20, color:"#FFF" }}>CheckBox</Text>
+            <Checkbox 
+                style={styles.checkbox}
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? '#7289DA' : "#FFF"}
+            />
+        </View>
+    )
+}
+
+export const MyBar = props => {
+    const [value, SetValue] = useState(0)
+
+    return(
+            <Slider 
+                style={ styles.MySlider }
+                value={50}
+                //onSlidingComplete={StartBar}
+                disabled={true}
+                minimumValue={0}
+                maximumValue={100}
+                thumbStyle={{ height: 0, width: 0, backgroundColor: 'transparent'  }} 
+                trackStyle={{ height: 4, backgroundColor: '#7289DA' }}
+                minimumTrackTintColor={"#7289DA"}
+            />
+
+    );
+}
+
+export const MySlider = props => {
+    return(
+            <Slider 
+                style={ styles.MySlider }
+                thumbStyle={{ height: 0, width: 0, backgroundColor: 'transparent'  }} 
+                trackStyle={{ height: 4, backgroundColor: '#7289DA' }}
+                minimumTrackTintColor={"#7289DA"}
+            />
+    );
+}
 
 export const MyTumbler = props =>{
     const [isEnabled, setIsEnabled] = useState(false);
@@ -8,7 +87,7 @@ export const MyTumbler = props =>{
     }
     return(
         <View style={ styles.View }>
-            <View style={{flexDirection:"row", justifyContent:"space-evenly" , borderBottomColor:"#242424" , borderBottomWidth:2}}>
+            <View style={{flexDirection:"row", justifyContent:"space-evenly" , borderBottomColor:"#FFF" , borderBottomWidth:2}}>
                 <ScrollView style={styles.ScrollView} pagingEnabled={true} showsVerticalScrollIndicator={false}>
                     <Text style= {styles.FirstText}>0</Text>
                     <Text style= {styles.FirstText}>1</Text>
@@ -54,14 +133,34 @@ export const MyTumbler = props =>{
                 style={{marginVertical:10,}}
                 onValueChange={toggleSwitch}
                 value={isEnabled}
-                trackColor={{false:"#FFF", true: "#242424"}}
-                thumbColor={"#242424"}
+                trackColor={{false:"#FFF", true:"#7289DA"}}
+                thumbColor={"#7289DA"}
             />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    Pressable:{
+        borderWidth:2,
+        backgroundColor:"#000",
+        justifyContent:"center",
+        alignItems:"center",
+        width:"50%",
+    },
+    image: {
+        height: 25,
+        width: 25,
+        borderRadius:500,
+        marginTop:3
+    },
+    checkbox: {
+        margin: 8,
+    },
+    MySlider:{
+        width:'100%'
+    },
+
     View:{
         height:40,
         flexDirection:'row',
@@ -74,11 +173,13 @@ const styles = StyleSheet.create({
     Text:{
         fontSize:40, 
         lineHeight:40,
+        color:"#FFF"
     },
     FirstText:{
         fontSize:40,
         lineHeight:40, 
         marginRight:10, 
-        textAlign:"right"
+        textAlign:"right",
+        color:"#FFF"
     }
 })

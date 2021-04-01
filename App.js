@@ -1,24 +1,21 @@
 import React from 'react'; //Основной файл со всеми страницами свайпов
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, View, Image, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //Собственные модули. Потом объединить в один файл для простоты.
-import {MySlider} from './elements/Slider.js';
-import {MyTumbler} from './elements/Tumbler.js';
-import {MyBox} from './elements/NewBox.js';
-import {MyBar} from './elements/Progress.js';
-import {LongPress} from './elements/LongPress.js';
-import CustomMarker from "./elements/MyCont";
 import { MyVideo } from './camerafilms/Video.js';
-import MyCamera from './camerafilms/Camera.js'
+import MyCamera from './camerafilms/Camera.js' 
+import CustomMarker,{MySlider, MyTumbler, MyBox, MyBar, LongPress} from './elements/All.js';
+import {MyRequest} from './request/MyRequest.js';
+
 
 //Первая страница свайпа с элементами
 function lab1() {
   const [multiSliderValue, setMultiSliderValue] = React.useState([30, 70]);
-
+  
   return (
     <View style={{ flex: 1, justifyContent: 'space-between'}}>
       <View style={styles.all}>
@@ -27,7 +24,7 @@ function lab1() {
         </View>
         <View style={{alignItems:"center"}}>
           <MultiSlider 
-            selectedStyle={{ backgroundColor: 'black', }}
+            selectedStyle={{ backgroundColor: '#7289DA', }}
             containerStyle={{height: 40,}}
             trackStyle={{height: 5, borderRadius:5}}
             unselectedStyle={{backgroundColor: 'silver',}}
@@ -37,7 +34,6 @@ function lab1() {
             min={0}
             max={100}
             step={1}
-            allowOverlap
             allowOverlap
             customMarker={CustomMarker}
           />
@@ -72,8 +68,8 @@ function lab2() {
 function lab3() {
   
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>lab3</Text>
+    <View style={{ flex: 1, width:"100%" }}>
+      <MyRequest/>
     </View>
   );
 }
@@ -86,8 +82,12 @@ export default function App() {
 
   return (
     <NavigationContainer theme={MyTheme}>
-      <View style={{backgroundColor:"#000"}}>
-        <Text style={{color:"#FFF", fontSize:30, textAlign:"center" ,marginTop:5}}>Balduev N A</Text>
+      <View style={{backgroundColor:"#23272A", flexDirection:"row"}}>
+      <Image
+        source={require('./assets/discord.png')}
+        fadeDuration={0}
+        style={{ width: 150, height: 50, marginTop:15 }}
+      />
       </View>
       <Tab.Navigator tabBarOptions={{labelStyle: {fontSize: 25, textAlign:"center"}}} tabBarPosition={'bottom'}>
         <Tab.Screen name="lab1" component={lab1} />
@@ -109,11 +109,11 @@ const styles = StyleSheet.create({
 
 const MyTheme = {
   colors: {
-    primary: 'rgb(178, 242, 136)',
-    background: 'rgb(178, 242, 136)',
-    text: 'rgb(178, 242, 136)',
-    card: 'rgb(0, 0, 0)',
-    border: 'rgb(0, 0, 0)',
+    primary: 'rgb(114, 137, 218)',
+    background: 'rgb(53,56,62)',
+    text: 'rgb(114, 137, 218)',
+    card: 'rgb(35, 39, 42)',
+    border: 'rgb(35, 39, 42)',
     notification: 'rgb(255, 69, 58)',
   },
 
