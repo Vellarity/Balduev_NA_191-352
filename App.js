@@ -10,6 +10,7 @@ import { MyVideo } from './camerafilms/Video.js';
 import MyCamera from './camerafilms/Camera.js' 
 import CustomMarker,{MySlider, MyTumbler, MyBox, MyBar, LongPress} from './elements/All.js';
 import {MyRequest} from './request/MyRequest.js';
+import {MyAuth} from './auth/MyAuth.js';
 
 
 //Первая страница свайпа с элементами
@@ -74,6 +75,15 @@ function lab3() {
   );
 }
 
+function lab4() {
+  
+  return (
+    <View style={{ flex: 1, width:"100%" }}>
+      <MyAuth/>
+    </View>
+  );
+}
+
 const Tab = createMaterialTopTabNavigator();
 
 //Само приложение со свайп-навигатором 
@@ -93,6 +103,7 @@ export default function App() {
         <Tab.Screen name="lab1" component={lab1} />
         <Tab.Screen name="lab2" component={lab2} />
         <Tab.Screen name="lab3" component={lab3} />
+        <Tab.Screen name="lab4" component={lab4} />
       </Tab.Navigator>
     </NavigationContainer>
   );

@@ -11,13 +11,13 @@ export const MyRequest = props =>{
     const getMoviesFromApiAsync = async () => {
         try {
           let response = await fetch(
-            'https://cbr.ru/'
+            'https://yandex.ru/news/quotes/2000.html'
           );
           let html = await response.text();
           setData(html);
           const root = parse(html);
-          console.log(root.querySelector('.main-indicator_info').text + " " + root.querySelector('.main-indicator_value').text);
-          setParse(root.querySelector('.main-indicator_info').text + " " + root.querySelector('.main-indicator_value').text)
+          console.log(root.querySelector('h1').text + " " + root.querySelectorAll('.news-stock-table__cell')[4].text);
+          setParse(root.querySelector('h1').text + " " + root.querySelectorAll('.news-stock-table__cell')[4].text)
           return html;
         } catch (error) {
           console.error(error);
