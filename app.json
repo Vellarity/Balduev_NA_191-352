@@ -4,6 +4,7 @@
     "slug": "AndroidDev",
     "version": "1.2.2",
     "orientation": "default",
+    "scheme": "myapp",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",

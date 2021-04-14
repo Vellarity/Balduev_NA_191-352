@@ -98,8 +98,8 @@ export const MyVideo = props =>{
                 value={position}
                 onSlidingComplete={handleDoneSliding}
                 thumbStyle={{ height: 0, width: 0, backgroundColor: 'transparent'  }} 
-                trackStyle={{ height: 4, backgroundColor: '#FB2D2D' }}
-                minimumTrackTintColor={"#7289DA"}
+                trackStyle={{ height: 4, backgroundColor: '#191414' }}
+                minimumTrackTintColor={"#191414"}
             />        
         </View>
     )

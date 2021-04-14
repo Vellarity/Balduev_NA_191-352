@@ -26,7 +26,7 @@ class CustomMarker extends React.Component {
             marginTop={5}
             name="ellipse"
             type='ionicon'
-            color="#7289DA"
+            color="#191414"
         />
       );
     }
@@ -44,7 +44,7 @@ class CustomMarker extends React.Component {
                 style={styles.checkbox}
                 value={isChecked}
                 onValueChange={setChecked}
-                color={isChecked ? '#7289DA' : "#FFF"}
+                color={isChecked ? '#191414' : "#FFF"}
             />
         </View>
     )
@@ -62,8 +62,8 @@ export const MyBar = props => {
                 minimumValue={0}
                 maximumValue={100}
                 thumbStyle={{ height: 0, width: 0, backgroundColor: 'transparent'  }} 
-                trackStyle={{ height: 4, backgroundColor: '#7289DA' }}
-                minimumTrackTintColor={"#7289DA"}
+                trackStyle={{ height: 4, backgroundColor: '#191414' }}
+                minimumTrackTintColor={"#191414"}
             />
 
     );
@@ -74,8 +74,8 @@ export const MySlider = props => {
             <Slider 
                 style={ styles.MySlider }
                 thumbStyle={{ height: 0, width: 0, backgroundColor: 'transparent'  }} 
-                trackStyle={{ height: 4, backgroundColor: '#7289DA' }}
-                minimumTrackTintColor={"#7289DA"}
+                trackStyle={{ height: 4, backgroundColor: '#191414' }}
+                minimumTrackTintColor={"#191414"}
             />
     );
 }
@@ -133,8 +133,8 @@ export const MyTumbler = props =>{
                 style={{marginVertical:10,}}
                 onValueChange={toggleSwitch}
                 value={isEnabled}
-                trackColor={{false:"#FFF", true:"#7289DA"}}
-                thumbColor={"#7289DA"}
+                trackColor={{false:"#FFF", true:"#191414"}}
+                thumbColor={"#191414"}
             />
         </View>
     );
@@ -143,7 +143,8 @@ export const MyTumbler = props =>{
 const styles = StyleSheet.create({
     Pressable:{
         borderWidth:2,
-        backgroundColor:"#000",
+        backgroundColor:"#191414",
+        borderColor:"#191414",
         justifyContent:"center",
         alignItems:"center",
         width:"50%",

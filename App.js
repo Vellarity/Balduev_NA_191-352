@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as Linking from 'expo-linking';
 
 //Собственные модули. Потом объединить в один файл для простоты.
 import { MyVideo } from './camerafilms/Video.js';
@@ -11,6 +12,7 @@ import MyCamera from './camerafilms/Camera.js'
 import CustomMarker,{MySlider, MyTumbler, MyBox, MyBar, LongPress} from './elements/All.js';
 import {MyRequest} from './request/MyRequest.js';
 import {MyAuth} from './auth/MyAuth.js';
+
 
 
 //Первая страница свайпа с элементами
@@ -25,7 +27,7 @@ function lab1() {
         </View>
         <View style={{alignItems:"center"}}>
           <MultiSlider 
-            selectedStyle={{ backgroundColor: '#7289DA', }}
+            selectedStyle={{ backgroundColor: '#191414', }}
             containerStyle={{height: 40,}}
             trackStyle={{height: 5, borderRadius:5}}
             unselectedStyle={{backgroundColor: 'silver',}}
@@ -88,15 +90,19 @@ const Tab = createMaterialTopTabNavigator();
 
 //Само приложение со свайп-навигатором 
 export default function App() {
+  const prefix = Linking.createURL('/');
+  const linking = {
+    prefixes: [prefix],
+  };
   
 
   return (
-    <NavigationContainer theme={MyTheme}>
-      <View style={{backgroundColor:"#23272A", flexDirection:"row"}}>
+    <NavigationContainer linking={linking} theme={MyTheme}>
+      <View style={{backgroundColor:"#191414", flexDirection:"row", height:60}}>
       <Image
-        source={require('./assets/discord.png')}
+        source={require('./assets/Spotify_Logo.png')}
         fadeDuration={0}
-        style={{ width: 150, height: 50, marginTop:15 }}
+        style={{ width: 130, height: 40, marginTop:15, marginLeft:10 }}
       />
       </View>
       <Tab.Navigator tabBarOptions={{labelStyle: {fontSize: 25, textAlign:"center"}}} tabBarPosition={'bottom'}>
@@ -120,10 +126,10 @@ const styles = StyleSheet.create({
 
 const MyTheme = {
   colors: {
-    primary: 'rgb(114, 137, 218)',
-    background: 'rgb(53,56,62)',
-    text: 'rgb(114, 137, 218)',
-    card: 'rgb(35, 39, 42)',
+    primary: 'rgb(30,215,96)',
+    background: 'rgb(30,215,96)',
+    text: 'rgb(30,215,96)',
+    card: 'rgb(25,20,20)',
     border: 'rgb(35, 39, 42)',
     notification: 'rgb(255, 69, 58)',
   },

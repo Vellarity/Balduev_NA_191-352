@@ -26,10 +26,10 @@ export const MyRequest = props =>{
   return (
     <View style={{ flex: 1, }}>
         <ScrollView style={{ flex: 1 }}>
-            <Text style={{color:"#FFF"}}>{data}</Text>
+            <Text style={{color:"#FFF",fontWeight:"bold"}}>{data}</Text>
         </ScrollView>
-        <Text style={{borderTopColor:"#FFF" , borderTopWidth:2, color:"#FFF", fontSize:14}}>{parseData}</Text>
-        <Button title="Get" onPress={getMoviesFromApiAsync} color="#7289DA" />
+        <Text style={{borderTopColor:"#FFF" , borderTopWidth:2, color:"#FFF", fontSize:20, fontWeight:"bold"}}>{parseData}</Text>
+        <Button title="Get" onPress={getMoviesFromApiAsync} color="#191414" />
     </View>
   );
 }
