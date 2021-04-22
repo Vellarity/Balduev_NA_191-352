@@ -12,6 +12,7 @@ import MyCamera from './camerafilms/Camera.js'
 import CustomMarker,{MySlider, MyTumbler, MyBox, MyBar, LongPress} from './elements/All.js';
 import {MyRequest} from './request/MyRequest.js';
 import {MyAuth} from './auth/MyAuth.js';
+import {MyApi} from './restrequest/MyRest.js';
 
 
 
@@ -86,6 +87,15 @@ function lab4() {
   );
 }
 
+function lab5() {
+  
+  return (
+    <View style={{ flex: 1, width:"100%" }}>
+      <MyApi/>
+    </View>
+  );
+}
+
 const Tab = createMaterialTopTabNavigator();
 
 //Само приложение со свайп-навигатором 
@@ -105,11 +115,12 @@ export default function App() {
         style={{ width: 130, height: 40, marginTop:15, marginLeft:10 }}
       />
       </View>
-      <Tab.Navigator tabBarOptions={{labelStyle: {fontSize: 25, textAlign:"center"}}} tabBarPosition={'bottom'}>
+      <Tab.Navigator tabBarOptions={{labelStyle: {fontSize: 25, textAlign:"center"}}} tabBarPosition={'bottom'} lazy>
         <Tab.Screen name="lab1" component={lab1} />
         <Tab.Screen name="lab2" component={lab2} />
         <Tab.Screen name="lab3" component={lab3} />
         <Tab.Screen name="lab4" component={lab4} />
+        <Tab.Screen name="lab5" component={lab5} />
       </Tab.Navigator>
     </NavigationContainer>
   );
