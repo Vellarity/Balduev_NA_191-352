@@ -5,6 +5,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as Linking from 'expo-linking';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 //Собственные модули. Потом объединить в один файл для простоты.
 import { MyVideo } from './camerafilms/Video.js';
@@ -97,6 +98,7 @@ function lab5() {
 }
 
 const Tab = createMaterialTopTabNavigator();
+const Drawer = createDrawerNavigator();
 
 //Само приложение со свайп-навигатором 
 export default function App() {
@@ -115,13 +117,13 @@ export default function App() {
         style={{ width: 130, height: 40, marginTop:15, marginLeft:10 }}
       />
       </View>
-      <Tab.Navigator tabBarOptions={{labelStyle: {fontSize: 25, textAlign:"center"}}} tabBarPosition={'bottom'} lazy>
-        <Tab.Screen name="lab1" component={lab1} />
-        <Tab.Screen name="lab2" component={lab2} />
-        <Tab.Screen name="lab3" component={lab3} />
-        <Tab.Screen name="lab4" component={lab4} />
-        <Tab.Screen name="lab5" component={lab5} />
-      </Tab.Navigator>
+      <Drawer.Navigator drawerContentOptions={{labelStyle: {fontSize: 20, }}} lazy>
+        <Drawer.Screen name="lab1" component={lab1} />
+        <Drawer.Screen name="lab2" component={lab2} />
+        <Drawer.Screen name="lab3" component={lab3} />
+        <Drawer.Screen name="lab4" component={lab4} />
+        <Drawer.Screen name="lab5" component={lab5} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
