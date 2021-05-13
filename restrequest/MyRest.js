@@ -4,7 +4,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button } from "react-native";
 
 export const MyApi = (props) => {
-  const [token, setToken] = useState("Bearer ");
   const [data, setData] = useState({
     trackName: '1',
     trackAut: '1',
