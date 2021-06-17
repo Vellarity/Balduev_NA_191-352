@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-native';
 import { Text, View, ScrollView } from 'react-native';
 import { parse } from 'node-html-parser';
-
+import * as Analytics from 'expo-firebase-analytics';
 
 export const MyRequest = props =>{
 
@@ -18,6 +18,7 @@ export const MyRequest = props =>{
           const root = parse(html);
           console.log(root.querySelector('h1').text + " " + root.querySelectorAll('.news-stock-table__cell')[4].text);
           setParse(root.querySelector('h1').text + " " + root.querySelectorAll('.news-stock-table__cell')[4].text)
+          Analytics.logEvent("GetInfoButtonPressed")
           return html;
         } catch (error) {
           console.error(error);

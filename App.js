@@ -1,11 +1,13 @@
-import React from 'react'; //Основной файл со всеми страницами свайпов
-import { StyleSheet, View, Image, TextInput } from 'react-native';
+import React, {useRef, useEffect, useState} from 'react'; //Основной файл со всеми страницами свайпов
+import { StyleSheet, View, Image, TextInput, AppState } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as Linking from 'expo-linking';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import * as Analytics from 'expo-firebase-analytics';
+
 
 //Собственные модули. Потом объединить в один файл для простоты.
 import { MyVideo } from './camerafilms/Video.js';
@@ -14,6 +16,8 @@ import CustomMarker,{MySlider, MyTumbler, MyBox, MyBar, LongPress} from './eleme
 import {MyRequest} from './request/MyRequest.js';
 import {MyAuth} from './auth/MyAuth.js';
 import {MyApi} from './restrequest/MyRest.js';
+import {MySocket} from "./WebSocket/MySocket.js"
+import {MyToken} from "./jToken/MyToken.js"
 
 
 
@@ -97,19 +101,83 @@ function lab5() {
   );
 }
 
+function lab7() {
+
+  return(
+    <View style={{ flex: 1, width:"100%" }}>
+        <MySocket/>
+    </View>
+  )
+}
+
+function lab8() {
+
+  return(
+    <View style={{ flex: 1, width:"100%" }}>
+      <MyToken/>
+    </View>
+  )
+}
+
 const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
 
-//Само приложение со свайп-навигатором 
+function getActiveRouteName(navigationState) {
+  if (!navigationState) return null;
+  const route = navigationState.routes[navigationState.index];
+  // Parse the nested navigators
+  if (route.routes) return getActiveRouteName(route);
+  return route.routeName;
+}
+
 export default function App() {
+  Analytics.setDebugModeEnabled
   const prefix = Linking.createURL('/');
   const linking = {
     prefixes: [prefix],
   };
-  
+  const navigationRef = useRef();
+  const routeNameRef = useRef();
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
+  useEffect(() =>{
+    AppState.addEventListener("change", _handleAppStateChange);
+    Analytics.logEvent("Start_App")
+
+    return () => {
+      AppState.removeEventListener("change", _handleAppStateChange);
+      Analytics.logEvent("Close_App")
+    };
+  }, []);
+
+  const _handleAppStateChange = (nextAppState) => {
+    if (appState.current.match(/inactive|background/) && nextAppState === "active") {
+      console.log("App has come to the foreground!");
+    }
+    appState.current = nextAppState;
+    setAppStateVisible(appState.current);
+    console.log("AppState", appState.current);
+  };
+    
+  
   return (
-    <NavigationContainer linking={linking} theme={MyTheme}>
+    <NavigationContainer
+      linking={linking} 
+      theme={MyTheme} 
+      ref={navigationRef} 
+      onReady={() => (routeNameRef.current = navigationRef.current.getCurrentRoute().name)} 
+      onStateChange={() => {
+        const previousRouteName = routeNameRef.current;
+        const currentRouteName = navigationRef.current.getCurrentRoute().name;
+
+        if (previousRouteName !== currentRouteName) {
+          Analytics.setCurrentScreen(currentRouteName, currentRouteName)
+          console.log(Analytics.setCurrentScreen(currentRouteName, currentRouteName));
+        }
+        routeNameRef.current = currentRouteName;
+      }}>
+      
       <View style={{backgroundColor:"#191414", flexDirection:"row", height:60}}>
       <Image
         source={require('./assets/Spotify_Logo.png')}
@@ -123,6 +191,8 @@ export default function App() {
         <Drawer.Screen name="lab3" component={lab3} />
         <Drawer.Screen name="lab4" component={lab4} />
         <Drawer.Screen name="lab5" component={lab5} />
+        <Drawer.Screen name="lab7" component={lab7} />
+        <Drawer.Screen name="lab8" component={lab8} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

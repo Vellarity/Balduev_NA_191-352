@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "324814567994",
+    "project_id": "vokvell-d363e",
+    "storage_bucket": "vokvell-d363e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324814567994:android:d31947e0f8e1fb050d9303",
+        "android_client_info": {
+          "package_name": "Vell.arr.ity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324814567994-a4mp2s30k2bfb2825mg460gpol3i2h2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz81ArxeYw0gNAG-JoOohf0sbU_Oo1m4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324814567994-a4mp2s30k2bfb2825mg460gpol3i2h2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

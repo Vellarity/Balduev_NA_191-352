@@ -2,7 +2,7 @@
   "expo": {
     "name": "AndroidDev",
     "slug": "AndroidDev",
-    "version": "5.0.1",
+    "version": "10.0.1",
     "orientation": "default",
     "scheme": "myapp",
     "icon": "./assets/icon.png",
@@ -25,10 +25,17 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "Vell.arr.ity"
+      "package": "Vell.arr.ity",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
-      "favicon": "./assets/icon.png"
+      "favicon": "./assets/icon.png",
+      "config":{
+        "firebase":{
+          "apikey":"AIzaSyAAjxZiPecu6eFV1HE6oOlPnliLR4EDQkc",
+          "measurementId": "G-74MD3Z23TS"
+        }
+      }
     }
   }
 }
