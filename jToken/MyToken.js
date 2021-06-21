@@ -10,7 +10,7 @@ export const MyToken = props =>{
   const logIn = async() =>{
     try {
       let reqBody = {
-        username: username,
+        loginname: username,
         password: password
       }
       let req =  await fetch('https://glacial-dusk-92304.herokuapp.com/login',{
@@ -21,9 +21,24 @@ export const MyToken = props =>{
         body: JSON.stringify(reqBody)
       })
       let response = await req.json()
-      setResponse(response)
-      let tempImage = response.baseFile
-      setImage(tempImage)
+      if (response.accessToken != ''){
+        setResponse(response)
+        const GetImage = async() =>{
+          try {
+            let imReq = await fetch('https://glacial-dusk-92304.herokuapp.com/protected',{
+              headers:{
+                'Authorization': `Bearer ${response.accessToken}` 
+              }
+            })
+            let fileRes = await imReq.json()
+            console.log(fileRes)
+            setImage(fileRes)
+          } catch (error) {
+            console.log(error)
+          }
+        }
+        GetImage()
+      }
     } catch (error) {
       console.log(error)
     }
@@ -53,7 +68,7 @@ export const MyToken = props =>{
       <ScrollView style={{flex:1}}>
         <Text style={styles.accessTXT}>{response.accessToken}</Text>
       </ScrollView>
-      <Image style={styles.funImage} resizeMethod="resize" resizeMode="center" source={{uri:`data:image/jpg;base64,${response.baseFile}`}}/>
+      <Image style={styles.funImage} resizeMethod="resize" resizeMode="center" source={{uri:`data:image/jpg;base64,${image.basefile}`}}/>
     </View>
   )
 }
